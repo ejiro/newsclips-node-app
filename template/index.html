@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>welcome to {{ title }}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <link href="/stylesheets/base.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12" style="margin-bottom: 25px;">
+                    <a class="navbar-brand" href="#"><h3 style="border-bottom: solid 1px lightblue; color:darkblue;">Trusted News Network (TNN)</h3></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style="padding: 0px 30px;">
+            <div class="col-md-6" style="border-right: solid 1px lightgray;">
+                <div class="row sectionHeading">
+                    <div class="col-sm-12">
+                        <span style="background-color:transparent;"><h5>Users (Participants)</h5></span>
+                        <button id="add_user_button" type="button" class="btn btn-info"
+                                data-toggle="modal" data-target="#userModal">Add User</button>
+                    </div>
+                </div>
+
+                <!-- User Modal -->
+                <div class="modal fade" id="userModal" tabindex="-1"
+                     role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userModalLabel">Add User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="userForm" action="" method="POST">
+                                    <div class="form-group">
+                                        <label for="userInputFirstName">FirstName</label>
+                                        <input name="firstName" type="text" class="form-control" id="userInputFirstName" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userInputLastName">LastName</label>
+                                        <input name="lastName" type="text" class="form-control" id="userInputLastName" placeholder="Last Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userInputEmail">Email address</label>
+                                        <input name="userId" type="email" class="form-control" id="userInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+
+                                    <!-- The hidden field -->
+                                    <input type="hidden" name="$class" value="org.acme.sample.User"/>
+                                    <input type="hidden" name="points" value="0"/>
+                                    <input type="hidden" name="reputation" value="0"/>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="userFormSubmit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="participants_rows">
+                    <!-- user data will be populated dynamically -->
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-12 sectionHeading">
+                        <span style="background-color:transparent;"><h5>Uploaded Clips (Assets)</h5></span>
+                        <button id="reset_all_button" type="button" class="btn btn-danger" style="visibility: hidden">Reset All</button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- Clip Modal -->
+                    <div class="modal fade" id="clipModal" tabindex="-1"
+                         role="dialog" aria-labelledby="clipModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="clipModalLabel">Add Clip</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="clipForm" action="" method="POST">
+                                        <div class="form-group">
+                                            <label for="clipInputTitle">Title</label>
+                                            <input name="title" type="text" class="form-control" id="clipInputTitle" placeholder="Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="clipInputTopic" class="col-sm-12" style="padding-left: 0px;">Topic</label>
+                                            <select name="topic" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="clipInputTopic">
+                                                <option selected>Choose Topic...</option>
+                                                <option value="Politics">Politics</option>
+                                                <option value="Entertainment">Entertainment</option>
+                                                <option value="Sports">Sports</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="clipInputTags">Tags</label>
+                                            <input name="tags" type="text" class="form-control" id="clipInputTags" placeholder="Tags (comma delimited)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="clipInputUrl">Video URL</label>
+                                            <input name="urls" type="text" class="form-control" id="clipInputUrl" placeholder="Video URL">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2" for="clipInputPublished">Published</label>
+                                            <div class="col-sm-10">
+                                                <input  style="margin-left: 5px;"
+                                                        onclick="return false;"
+                                                        name="published" type="checkbox" checked class="form-check-input"
+                                                        id="clipInputPublished">
+                                            </div>
+                                        </div>
+
+                                        <!-- The hidden field -->
+                                        <input type="hidden" name="$class" value="org.acme.sample.NewsClip"/>
+                                        <input type="hidden" name="clipId" value="" id="clipId"/>
+                                        <input type="hidden" name="length" value="120"/>
+                                        <input type="hidden" name="producer" value="" id="clipProducer"/>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="clipFormSubmit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="clipTable" class="table table-bordered table-hover" style="margin:5px 10px;">
+                        <thead style="background-color:#dfdfdf;">
+                            <tr>
+                                <th>Producer</th>
+                                <th>Title</th>
+                                <th>Topic</th>
+                                <th>Tags</th>
+                                <th>Published</th>
+                                <th style="display: none">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- clips data will be populated dynamically  -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clip List Model -->
+        <div class="modal fade" id="clipListModal" tabindex="-1"
+             role="dialog" aria-labelledby="clipListModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="display: table;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="clipListModalLabel">Add User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="display: table;">
+                        <table id="clipListTable" class="table table-bordered table-hover" style="margin:5px 10px;">
+                            <thead style="background-color:#dfdfdf;">
+                            <tr>
+                                <th>Producer</th>
+                                <th>Title</th>
+                                <th>Topic</th>
+                                <th>Tags</th>
+                                <th>Published</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- clips data will be populated dynamically  -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding: 0px 30px;">
+            <div class="col-md-12" style="background-color:#d6faf8; padding: 5px; margin: 15px 0px; border: solid 1px lightgray">
+                <span style="background-color:transparent;"><h5>Transactions (Watched)</h5></span>
+                <ul class="transactions">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="progressModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Watching...</h6>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated active"
+                             role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Please wait...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://mozilla.github.io/nunjucks/files/nunjucks.js"></script>
+    <script src="/javascripts/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!-- clip table row card -->
+<tr class="default">
+    <td>{{ clip.producer }} </td>
+    <td>{{ clip.title }} </td>
+    <td>{{ clip.topic }} </td>
+    <td>{{ clip.tags }} </td>
+    <td>{{ clip.published }} </td>
+    <td>
+        <button data-producer="{{ clip.producer }}" data-clip="{{ clip.clipId }}"
+                data-consumer="{{ clip.consumer }}"
+                type="button"
+                class="btn btn-info btn-block watch-btn" data-dismiss="modal">Watch</button>
+    </td>
+</tr>

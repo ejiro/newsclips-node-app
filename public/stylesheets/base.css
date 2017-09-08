@@ -1,0 +1,49 @@
+body {
+  padding: 10px 25px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa!important;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.sectionHeading {
+  /* padding: 5px 0px; */
+  border-bottom: solid 1px lightgray;
+}
+.sectionHeading button {
+  float: right;
+}
+
+.sectionHeading span {
+  display: inline-block;
+  padding: 7px 0px;
+  background-color: transparent;
+}
+
+ul.transactions {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-height: 400px;
+  overflow: auto;
+}
+
+ul.transactions li {
+  float: left;
+  margin: 2px;
+}
+
+ul.transactions li div{
+  background-color: #FFFFE0;
+  width: 170px;
+  height: 120px;
+  border: 1px solid red;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: block;
+  padding-top: 15px;
+}

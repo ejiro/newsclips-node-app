@@ -1,0 +1,14 @@
+<!-- clip table row card -->
+<tr class="default">
+    <td>{{ clip.producer }} </td>
+    <td>{{ clip.title }} </td>
+    <td>{{ clip.topic }} </td>
+    <td>{{ clip.tags }} </td>
+    <td>{{ clip.published }} </td>
+    <td style="display: none">
+        <button data-clip="{{ clip.clipId }}" type="button"
+                class="btn btn-success btn-block">Update</button>
+        <button data-clip="{{ clip.clipId }}" type="button"
+                class="btn btn-danger btn-block">Delete</button>
+    </td>
+</tr>

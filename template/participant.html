@@ -1,0 +1,21 @@
+<!-- user card -->
+<div class="col-sm-6">
+    <div id="{{ user.userId | replace('@', '-') | replace('.', '-') }}" class="card userCard"
+         style="background-color:#fff0f5; padding:5px; margin-top: 5px;">
+        <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+        <p>userID: {{ user.userId }}</p>
+        <p>firstName: {{ user.firstName }}</p>
+        <p>lastName: {{ user.lastName }}</p>
+        <p class="points change-0">Rewards/Points: {{ user.points }}</p>
+        <p class="reputation change-1">Reputation: {{ user.reputation }}</p>
+        <div>
+            <button data-producer="{{ user.userId }}" type="button"
+                    data-toggle="modal" data-target="#clipModal"
+                    class="btn btn-info btn-block col-sm-12">Add Clip</button>
+            <button data-consumer="{{ user.userId }}" type="button"
+                    data-toggle="modal" data-target="#clipListModal"
+                    class="btn btn-primary btn-block col-sm-12">Watch Clip</button>
+        </div>
+    </div>
+</div>
+
