@@ -202,7 +202,7 @@ function postWatchedClipData (postData, clip, producer, consumer) {
 
 function getAllTransactionData() {
     $.ajax({
-        url: "http://localhost:3000/api/system/transactions",
+        url: "http://localhost:3000/api/system/historian",
         // the URL for the request
         type: "GET",
         // whether this is a POST or GET request
@@ -219,12 +219,14 @@ function getAllTransactionData() {
             $.each(responseJson, function (i, transaction) {
                 //var txId = transaction["transactionId"];
                 var classType = transaction["$class"];
-                var timestamp = new Date(transaction["timestamp"]);
+                var eventEmitted = transaction["eventsEmitted"];
+                var timestamp = new Date(transaction["transactionTimestamp"]);
                 transaction["timestamp"] = timestamp.toUTCString();
 
                 var param = $.param(transaction);
                 console.log(param);
-                if(classType.indexOf("Watched") >= 0) {
+                //if(classType.indexOf("Watched") >= 0) {
+                if(eventEmitted && eventEmitted.length){
                     $('ul.transactions').append(nunjucks.render("transaction?" + param, {transaction: transaction}));
                 }
             });
@@ -241,7 +243,7 @@ function getAllTransactionData() {
 
 function getTransactionData(txId, callback) {
     $.ajax({
-        url: "http://localhost:3000/api/system/transactions/"+txId,
+        url: "http://localhost:3000/api/system/historian/"+txId,
         // the URL for the request
         type: "GET",
         // whether this is a POST or GET request
@@ -250,12 +252,14 @@ function getTransactionData(txId, callback) {
         success: function (transaction) {
             //var txId = transaction["transactionId"];
             var classType = transaction["$class"];
-            var timestamp = new Date(transaction["timestamp"]);
+            var eventEmitted = transaction["eventsEmitted"];
+            var timestamp = new Date(transaction["transactionTimestamp"]);
             transaction["timestamp"] = timestamp.toUTCString();
 
             var param = $.param(transaction);
             console.log(param);
-            if(classType.indexOf("Watched") >= 0) {
+            //if(classType.indexOf("Watched") >= 0) {
+            if(eventEmitted && eventEmitted.length){
                 $('ul.transactions').append(nunjucks.render("transaction?" + param, {transaction: transaction}));
 
                 var colorStr = '#43ff2c'; // color of highlight

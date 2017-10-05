@@ -63,6 +63,18 @@
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
 
+                                    <!--
+                                    <div class="form-group">
+                                        <label for="clipInputUrl" class="col-sm-12" style="padding-left: 0px;">Topic</label>
+                                        <select name="urls" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="clipInputUrl">
+                                            <option selected>Video Source</option>
+                                            <option value="politics_url">https://youtu.be/z3yUjXGUSPo?t=41s</option>
+                                            <option value="entertainment_url">https://youtu.be/z3yUjXGUSPo?t=41s</option>
+                                            <option value="sports_url">https://youtu.be/z3yUjXGUSPo?t=41s</option>
+                                        </select>
+                                    </div>
+                                    -->
+
                                     <!-- The hidden field -->
                                     <input type="hidden" name="$class" value="org.acme.sample.User"/>
                                     <input type="hidden" name="points" value="0"/>
@@ -122,9 +134,20 @@
                                             <label for="clipInputTags">Tags</label>
                                             <input name="tags" type="text" class="form-control" id="clipInputTags" placeholder="Tags (comma delimited)">
                                         </div>
+                                        <!--
                                         <div class="form-group">
-                                            <label for="clipInputUrl">Video URL</label>
-                                            <input name="urls" type="text" class="form-control" id="clipInputUrl" placeholder="Video URL">
+                                            <label for="clipInputUrl1">Video URL</label>
+                                            <input name="urlsss" type="text" class="form-control" id="clipInputUrl1" placeholder="Video URL">
+                                        </div>
+                                        -->
+                                        <div class="form-group">
+                                            <label for="clipInputUrls" class="col-sm-12" style="padding-left: 0px;">Video URL</label>
+                                            <select name="urls" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="clipInputUrls">
+                                                <option selected>Video Source</option>
+                                                <option value="https://youtu.be/z3yUjXGUSPo?t=41s">https://youtu.be/z3yUjXGUSPo?t=41s</option>
+                                                <option value="https://youtu.be/z3yUjXGUSPo?t=41s">https://youtu.be/z3yUjXGUSPo?t=41s</option>
+                                                <option value="https://youtu.be/z3yUjXGUSPo?t=41s">https://youtu.be/z3yUjXGUSPo?t=41s</option>
+                                            </select>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2" for="clipInputPublished">Published</label>
@@ -176,7 +199,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="display: table;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="clipListModalLabel">Add User</h5>
+                        <h5 class="modal-title" id="clipListModalLabel">Clips</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
